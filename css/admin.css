@@ -1,0 +1,218 @@
+.admin-page
+{
+    background:#eee;
+    min-height:100vh
+
+}
+.admin-header
+{
+    height:68px;
+    background:#000; color:#fff;
+    padding:0 5vw; display:flex;
+    align-items:center;
+    justify-content:space-between
+}
+    
+    .admin-header img
+    {
+        width:175px; height:50px; 
+        object-fit:contain
+    }
+
+    .admin-header>div
+    {
+        display:flex;
+        gap:18px; align-items:center;
+        font-size:9px
+    }
+
+    .admin-header button,.admin-header a
+    {
+        border:0; 
+        background:none;
+        color:#fff;
+        font-size:9px;
+        cursor:pointer
+    }
+    
+    .admin-shell
+    {
+        width:min(100% - 32px,1100px);
+        margin:auto;
+        padding:40px 16px 60px
+    }
+
+    .admin-shell.narrow
+    {
+        max-width:700px
+    }
+    
+    .stats
+    {
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:15px;margin:25px 0 30px
+    }
+
+    .stats>div
+    {
+        background:#fff;
+        border:1px solid #ddd;
+        padding:20px
+    }
+
+    .stats strong
+    {
+        display:block;font-family:var(--heading);
+        font-size:28px
+    }
+
+    .stats span
+
+    {
+        font-size:9px
+    }
+
+    .admin-card
+    {
+        background:#fff;
+        border:1px solid #ddd;
+        padding:24px;
+        margin-bottom:24px
+    }
+    
+    .admin-card-head
+    {
+        display:flex;justify-content:space-between;
+        align-items:center;margin-bottom:18px
+    }
+    
+    .admin-card h2
+    {
+        font-size:18px
+    }
+    
+    .admin-card small
+    {
+        display:block;font-size:9px;color:#777;margin-top:3px
+    }
+    
+    .actions
+    {
+        display:flex;
+        gap:10px;
+        align-items:center
+    }
+    
+    .actions a,.actions button
+    {
+        font-size:9px;
+        text-decoration:underline;
+        border:0;
+        background:none;
+        cursor:pointer
+    }
+
+    .admin-form
+    {
+        display:grid; gap:16px;
+        background:#fff;
+        border:1px solid #ddd;
+        padding:28px
+    }
+
+    .admin-form label
+    {
+        display:grid;
+        gap:6px;
+        font-size:10px;
+        font-weight:600;
+        letter-spacing:.04em
+    }
+
+    .admin-form input,
+    .admin-form select,
+    .admin-form textarea
+    {
+        padding:10px 12px;
+        border:1px solid #ccc;
+        font-size:13px;
+        background:#fafafa;
+        width:100%
+    }
+
+    .admin-form input:focus,
+    .admin-form select:focus,
+    .admin-form textarea:focus
+    {
+        outline:2px solid #111;
+        background:#fff
+    }
+    
+    .admin-form textarea
+    {
+        resize:vertical
+    }
+    
+    .form-grid
+    {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:14px
+    }
+    
+    .check
+    {
+        display:flex;
+        align-items:center;
+        gap:7px
+    }
+    .check input
+    {
+        width:auto
+    }
+    
+    .admin-form .button
+    {
+        margin-top:8px
+    }
+
+    
+    .admin-shell h1
+    {
+        margin-top:6px;
+        margin-bottom:24px
+    }
+
+    .table-wrap
+    {
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch
+    }
+
+    @media(max-width:650px){.stats{grid-template-columns:1fr}
+    
+    .admin-card-head{
+        gap:10px;align-items:flex-start;flex-direction:column
+    }
+    
+    .form-grid{grid-template-columns:1fr}
+}
+
+.admin-card-actions 
+{ display:flex;
+     gap:12px;
+      align-items:center;
+       flex-wrap:wrap; 
+    }
+
+.inline-form 
+{ 
+    display:flex;
+     gap:8px;
+      align-items:center; 
+    }
+.inline-form select, .inline-form button 
+{
+     min-height:36px;
+     }

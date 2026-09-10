@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.07 33.08">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #bfbfbf;
+      }
+
+      .cls-2 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <g id="section_3" data-name="section 3">
+    <g id="hanger">
+      <path class="cls-2" d="M22.01,14.68L2.13,26.96c-2.49,1.54-1.4,5.37,1.53,5.37h39.75c2.92,0,4.01-3.83,1.53-5.37l-19.88-12.28c-.93-.58-2.12-.58-3.05,0Z"/>
+      <line class="cls-2" x1="23.53" y1="14.25" x2="23.53" y2="9.8"/>
+      <path class="cls-2" d="M28.03,5.25c0,2.49-2.02,4.5-4.5,4.5-.26,0-.52-.02-.77-.07v-4.43h-3.73c0-2.49,2.01-4.5,4.5-4.5s4.5,2.01,4.5,4.5Z"/>
+      <circle class="cls-1" cx="23.53" cy="5.25" r="3.77"/>
+    </g>
+  </g>
+</svg>
