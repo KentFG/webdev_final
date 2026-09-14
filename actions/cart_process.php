@@ -32,6 +32,20 @@ if ($action === 'add') {
     set_flash('success', 'Product removed from your bag.');
 }
 
+$isAjax = (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') 
+    || (isset($_POST['ajax']) && $_POST['ajax'] === '1')
+    || (isset($_SERVER['HTTP_ACCEPT']) && str_contains($_SERVER['HTTP_ACCEPT'], 'application/json'));
+
+if ($isAjax) {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => true,
+        'message' => $action === 'add' ? 'Product added to your bag.' : 'Product removed from your bag.',
+        'cart_count' => cart_count()
+    ]);
+    exit;
+}
+
 $back = $_SERVER['HTTP_REFERER'] ?? url('index.php#collection');
 // If coming from the homepage without a hash, anchor to #collection
 if (preg_match('/index\.php\s*$/', $back) || preg_match('/gonzagas-apparel-web\/?$/', $back)) {

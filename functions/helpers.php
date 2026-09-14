@@ -12,3 +12,19 @@ function icon(string $name): string {
 function cart_count(): int { return array_sum(array_map('intval', $_SESSION['cart'] ?? [])); }
 function money(float $amount): string { return '₱' . number_format($amount, 2); }
 function redirect(string $path): never { header('Location: ' . url($path)); exit; }
+function product_image_src(?string $image, string $basePrefix = ''): string {
+    $img = trim((string)$image);
+    if ($img === '') {
+        return $basePrefix . 'assets/images/black-tshirt-placeholder.svg';
+    }
+    if (str_starts_with($img, 'http://') || str_starts_with($img, 'https://')) {
+        return $img;
+    }
+    if (str_starts_with($img, 'assets/')) {
+        return $basePrefix . $img;
+    }
+    if (str_starts_with($img, '/')) {
+        return $img;
+    }
+    return $basePrefix . 'assets/images/' . $img;
+}

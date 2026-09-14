@@ -44,7 +44,7 @@ function validate_product(string $name, string $description, string $price, stri
     if (strlen($description) > 2000) $errors[] = 'Description is too long.';
     if (!is_numeric($price) || (float)$price < 0) $errors[] = 'Please enter a valid non-negative price.';
     if (filter_var($stock, FILTER_VALIDATE_INT) === false || (int)$stock < 0) $errors[] = 'Please enter a valid non-negative stock quantity.';
-    if ($image === '' || strlen($image) > 255 || !preg_match('/^[A-Za-z0-9._\/-]+$/', $image)) $errors[] = 'Image path contains invalid characters.';
+    if ($image !== '' && strlen($image) > 255) $errors[] = 'Image path is too long (max 255 characters).';
     if ($categoryId !== null && (int)$categoryId < 1) $errors[] = 'Please select a category.';
     return $errors;
 }
@@ -65,7 +65,9 @@ function validate_profile(array $data): array
 function validate_checkout(array $data): array
 {
     $errors = validate_profile($data);
-    if (!in_array($data['payment_method'] ?? '', ['cod','bank_transfer'], true)) $errors[] = 'Please select a valid payment method.';
+    if (!in_array($data['payment_method'] ?? '', ['cod','gcash','bank_transfer'], true)) {
+        $errors[] = 'Please select a valid payment method (Cash on Delivery or GCash).';
+    }
     if (strlen(clean_text((string)($data['notes'] ?? ''))) > 500) $errors[] = 'Order notes are too long.';
     return $errors;
 }

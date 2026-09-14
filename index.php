@@ -108,7 +108,7 @@ $flash=get_flash(); $user=current_user();
         <div class="product-grid container"><?php foreach($products as $product): ?>
             <article class="product-card">
                 <div class="product-image-wrap">
-                    <img src="assets/images/<?=e($product['image'])?>" alt="<?=e($product['name'])?>"></div>
+                    <img src="<?=e(product_image_src($product['image']))?>" alt="<?=e($product['name'])?>"></div>
                     <h3><?=e($product['name'])?></h3>
                     <p class="product-price"><?=money((float)$product['price'])?></p>
                     <form action="actions/cart_process.php" method="post">

@@ -58,7 +58,7 @@ $stmt=db()->prepare($sql);$stmt->execute($params);$products=$stmt->fetchAll(); $
                 <div class="product-grid collection-grid"><?php foreach($products as $product):?>
                     <article class="product-card">
                         <div class="product-image-wrap">
-                            <img src="assets/images/<?=e($product['image'])?>" alt="<?=e($product['name'])?>">
+                            <img src="<?=e(product_image_src($product['image']))?>" alt="<?=e($product['name'])?>">
                         </div>
                         <small class="product-category"><?=e($product['category_name']??'Uncategorized')?></small>
                         <h3><?=e($product['name'])?></h3>
@@ -79,6 +79,7 @@ $stmt=db()->prepare($sql);$stmt->execute($params);$products=$stmt->fetchAll(); $
                     </div>
                     <?php endif;?>
                 </main>
+                <script src="js/script.js"></script>
             </body>
             
         </html>
