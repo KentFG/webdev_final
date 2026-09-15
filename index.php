@@ -4,7 +4,7 @@ require_once __DIR__ . '/functions/helpers.php';
 
 $navItems = [
     ['label' => 'HOME', 'href' => '#home'], ['label' => 'ABOUT', 'href' => '#about'],
-    ['label' => 'COLLECTION', 'href' => 'collection.php'], ['label' => 'LOOKBOOK', 'href' => '#lookbook'],
+    ['label' => 'COLLECTION', 'href' => 'collection.php'], ['label' => 'REVIEWS', 'href' => '#lookbook'],
     ['label' => 'CONTACT', 'href' => '#contact'],
 ];
 $values = [
