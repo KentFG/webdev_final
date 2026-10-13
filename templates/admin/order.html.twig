@@ -1,0 +1,139 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Order #{{ order.id }} | Admin{% endblock %}
+
+{% block body %}
+<main class="admin-shell">
+    <div class="section-kicker">ORDER MANAGEMENT <span></span></div>
+    <h1>ORDER #{{ order.id }}</h1>
+
+    <div class="admin-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+        <section class="admin-card">
+            <h2>CUSTOMER &amp; SHIPPING DETAILS</h2>
+            <p><strong>Account Name:</strong> {{ order.account_name|default(order.shipping_name) }}</p>
+            <p><strong>Email:</strong> {{ order.email }}</p>
+            <p><strong>Recipient Name:</strong> {{ order.shipping_name }}</p>
+            <p><strong>Contact Phone:</strong> {{ order.shipping_phone }}</p>
+            <p>
+                <strong>Delivery Address:</strong><br>
+                {{ order.shipping_address1 }}
+                {% if order.shipping_address2 is not empty %}, {{ order.shipping_address2 }}{% endif %}<br>
+                {{ order.shipping_city }}, {{ order.shipping_province }} {{ order.shipping_postal_code }}<br>
+                {{ order.shipping_country }}
+            </p>
+            {% if order.notes is not empty %}
+                <p><strong>Customer Notes:</strong> <em>{{ order.notes }}</em></p>
+            {% endif %}
+        </section>
+
+        <section class="admin-card">
+            <h2>PAYMENT INFORMATION</h2>
+            <p><strong>Payment Method:</strong> {{ order.payment_method|upper }}</p>
+            <p><strong>Payment Status:</strong> {{ order.payment_status|upper }}</p>
+            {% if order.payment_reference is not empty %}
+                <p><strong>GCash Reference:</strong> <code>{{ order.payment_reference }}</code></p>
+            {% endif %}
+            {% if order.payment_receipt is not empty %}
+                <div style="margin-top: 10px;">
+                    <strong>Uploaded Receipt Image:</strong><br>
+                    <a href="{{ asset('assets/uploads/receipts/' ~ order.payment_receipt) }}" target="_blank">
+                        <img src="{{ asset('assets/uploads/receipts/' ~ order.payment_receipt) }}" alt="GCash Receipt" style="max-height: 200px; border: 1px solid #ccc; border-radius: 4px; margin-top: 6px;">
+                    </a>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+
+    <section class="admin-card" style="margin-top: 1.5rem;">
+        <h2>UPDATE ORDER &amp; DISPATCH STATUS</h2>
+        <form action="javascript:void(0)" onsubmit="event.preventDefault(); return false;" class="auth-form" style="max-width: 100%;">
+            <div class="form-grid">
+                <div>
+                    <label for="status">ORDER STATUS</label>
+                    <select id="status" name="status" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        {% for opt in ['pending', 'processing', 'shipped', 'completed', 'cancelled'] %}
+                            <option value="{{ opt }}" {% if order.status == opt %}selected{% endif %}>{{ opt|upper }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="payment_status">PAYMENT STATUS</label>
+                    <select id="payment_status" name="payment_status" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        {% for opt in ['pending', 'paid', 'failed', 'confirmed_by_driver'] %}
+                            <option value="{{ opt }}" {% if order.payment_status == opt %}selected{% endif %}>{{ opt|upper }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-grid" style="margin-top: 10px;">
+                <div>
+                    <label for="driver_confirmation">DRIVER CONFIRMATION</label>
+                    <select id="driver_confirmation" name="driver_confirmation" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="unconfirmed" {% if order.driver_confirmation == 'unconfirmed' %}selected{% endif %}>UNCONFIRMED</option>
+                        <option value="confirmed" {% if order.driver_confirmation == 'confirmed' %}selected{% endif %}>CONFIRMED</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="driver_name">ASSIGNED RIDER / DRIVER NAME</label>
+                    <input id="driver_name" name="driver_name" value="{{ order.driver_name|default('') }}" placeholder="e.g. Juan Dela Cruz">
+                </div>
+            </div>
+
+            <label for="driver_notes" style="margin-top: 10px;">DISPATCH / DRIVER NOTES</label>
+            <textarea id="driver_notes" name="driver_notes" rows="2" placeholder="Driver handoff notes, delivery verification...">{{ order.driver_notes|default('') }}</textarea>
+
+            <button class="button button--filled" type="button" onclick="return false;" style="margin-top: 12px;">SAVE ORDER UPDATES</button>
+        </form>
+    </section>
+
+    <section class="admin-card" style="margin-top: 1.5rem;">
+        <h2>ORDER ITEMS</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ITEM</th>
+                        <th>UNIT PRICE</th>
+                        <th>QTY</th>
+                        <th>SUBTOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.items %}
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="{{ product_image_src(item.image) }}" alt="{{ item.product_name }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                                    <strong>{{ item.product_name }}</strong>
+                                </div>
+                            </td>
+                            <td>{{ item.unit_price|money }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td><strong>{{ item.subtotal|money }}</strong></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><strong>Subtotal:</strong></td>
+                        <td><strong>{{ order.subtotal_amount|money }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><strong>Shipping Fee:</strong></td>
+                        <td><strong>{% if order.shipping_fee == 0 %}FREE{% else %}{{ order.shipping_fee|money }}{% endif %}</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right; font-size: 1.1rem;"><strong>Grand Total:</strong></td>
+                        <td style="font-size: 1.1rem;"><strong>{{ order.total_amount|money }}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+
+    <div style="margin-top: 1.5rem;">
+        <a class="button button--outline" href="{{ path('app_admin_orders') }}">← BACK TO ORDERS</a>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,38 @@
+{# ============================================================
+   Admin Topbar Partial
+   templates/admin/_topbar.html.twig
+   Included by: admin/base.html.twig
+   ============================================================ #}
+<header class="admin-topbar">
+
+    {# ── Mobile hamburger toggle (shown only on small screens via CSS) ── #}
+    <button class="admin-sidebar-toggle" id="sidebarToggle" type="button" aria-label="Toggle Navigation Sidebar">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    {# ── Brand: logo + separator + "Administration" label ── #}
+    <div class="admin-topbar-brand">
+        <img src="{{ asset('assets/images/logo-placeholder.svg') }}"
+             alt="Gonzaga's Apparel"
+             class="admin-topbar-logo">
+        <span class="admin-topbar-sep"></span>
+        <span class="admin-topbar-label">Administration</span>
+    </div>
+
+    {# ── Action: View Store (clickable, no href / no URL preview) ── #}
+    <div class="admin-topbar-actions">
+        <a class="admin-view-store-btn" style="cursor: pointer;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            View Store
+        </a>
+    </div>
+
+</header>

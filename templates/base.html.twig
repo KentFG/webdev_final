@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gonzaga's Apparel - minimal clothing, quality everyday wear, and timeless essentials.">
+    <title>{% block title %}Gonzaga's Apparel{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    {% block header %}
+    <header class="site-header" id="top">
+        <div class="header-inner container">
+            <a class="brand brand--header" href="{{ path('app_home') }}" aria-label="Gonzaga's Apparel home">
+                <img class="logo-placeholder logo-placeholder--header" src="{{ asset('assets/images/logo-placeholder.svg') }}" alt="Gonzaga's Apparel logo">
+            </a>
+            <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+                <a href="{{ path('app_home') }}" class="nav-link">HOME</a>
+                <a href="{{ path('app_home') }}#about" class="nav-link">ABOUT</a>
+                <a href="{{ path('app_collection') }}" class="nav-link">COLLECTION</a>
+                <a href="{{ path('app_home') }}#lookbook" class="nav-link">REVIEWS</a>
+                <a href="{{ path('app_home') }}#contact" class="nav-link">CONTACT</a>
+                <a class="nav-link" href="{{ path('app_admin_dashboard') }}">ADMIN</a>
+            </nav>
+            <a class="bag-button" href="{{ path('app_cart') }}" aria-label="Shopping bag">
+                {{ icon('bag') }}
+                <span class="bag-count">{{ cart_count() }}</span>
+            </a>
+        </div>
+    </header>
+    {% endblock %}
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="site-flash {{ label }}" role="status">{{ message }}</div>
+        {% endfor %}
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+
+    {% block footer %}
+    <footer class="site-footer">
+        <div class="footer-inner container">
+            <div class="footer-col brand-col">
+                <img class="logo-placeholder logo-placeholder--footer" src="{{ asset('assets/images/logo-placeholder.svg') }}" alt="Gonzaga's Apparel">
+                <p class="footer-tagline">Simple. Modern. Purposeful.<br>Minimal essentials designed to elevate your everyday lifestyle.</p>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="{{ path('app_home') }}">Home</a></li>
+                    <li><a href="{{ path('app_home') }}#about">About</a></li>
+                    <li><a href="{{ path('app_collection') }}">Collection</a></li>
+                    <li><a href="{{ path('app_home') }}#lookbook">Reviews</a></li>
+                    <li><a href="{{ path('app_home') }}#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CUSTOMER CARE</h4>
+                <ul>
+                    <li><a href="{{ path('app_faqs') }}">FAQs</a></li>
+                    <li><a href="{{ path('app_shipping') }}">Shipping &amp; Returns</a></li>
+                    <li><a href="{{ path('app_size_guide') }}">Size Guide</a></li>
+                    <li><a href="{{ path('app_privacy') }}">Privacy Policy</a></li>
+                    <li><a href="{{ path('app_terms') }}">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="footer-community-header">
+                    <h4>JOIN THE COMMUNITY</h4>
+                    <div class="social-links social-links--inline">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link-btn">
+                            <img src="{{ asset('assets/icons/facebook-placeholder.svg') }}" alt="" aria-hidden="true" class="social-icon"> Facebook
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link-btn">
+                            <img src="{{ asset('assets/icons/instagram-placeholder.svg') }}" alt="" aria-hidden="true" class="social-icon"> Instagram
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-link-btn">
+                            <img src="{{ asset('assets/icons/tiktok-placeholder.svg') }}" alt="" aria-hidden="true" class="social-icon"> TikTok
+                        </a>
+                    </div>
+                </div>
+                <p class="footer-subscribe-copy">Be the first to know about new drops, restocks, and exclusive offers.</p>
+                <form class="subscribe-form" action="{{ path('app_subscribe') }}" method="post">
+                    <input type="email" name="email" placeholder="Your email address" required autocomplete="email">
+                    <button class="button button--filled" type="submit">SUBSCRIBE</button>
+                    <span class="form-status" aria-live="polite"></span>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; {{ "now"|date("Y") }} Gonzaga's Apparel. All rights reserved.</p>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <script src="{{ asset('js/script.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,46 @@
+{# ============================================================
+   Admin Footer Partial
+   templates/admin/_footer.html.twig
+   Included by: admin/base.html.twig
+   ============================================================ #}
+<footer class="admin-footer">
+    <div class="admin-footer-inner">
+
+        {# ── Brand: logo + ADMIN PORTAL badge ── #}
+        <div class="admin-footer-brand">
+            <img src="{{ asset('assets/images/logo-placeholder.svg') }}"
+                 alt="Gonzaga's Apparel"
+                 class="admin-footer-logo">
+            <span class="admin-footer-badge">ADMIN PORTAL</span>
+        </div>
+
+        {# ── Meta: copyright + security notice ── #}
+        <div class="admin-footer-meta">
+            <p>&copy; {{ "now"|date("Y") }} Gonzaga's Apparel. All rights reserved.</p>
+            <p class="admin-footer-sub">Secure administration panel &mdash; authorized access only.</p>
+        </div>
+
+        {# ── Social links using icon assets ── #}
+        <div class="admin-footer-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                <img src="{{ asset('assets/icons/facebook-placeholder.svg') }}"
+                     alt="" aria-hidden="true"
+                     class="admin-footer-social-icon admin-footer-social-icon--dark">
+                Facebook
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                <img src="{{ asset('assets/icons/instagram-placeholder.svg') }}"
+                     alt="" aria-hidden="true"
+                     class="admin-footer-social-icon admin-footer-social-icon--dark">
+                Instagram
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+                <img src="{{ asset('assets/icons/tiktok-placeholder.svg') }}"
+                     alt="" aria-hidden="true"
+                     class="admin-footer-social-icon admin-footer-social-icon--dark">
+                TikTok
+            </a>
+        </div>
+
+    </div>
+</footer>

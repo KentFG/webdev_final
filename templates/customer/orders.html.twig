@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Orders | Gonzaga's Apparel{% endblock %}
+{% block body_class %}shop-page{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+{% endblock %}
+
+{% block body %}
+<main class="shop-shell">
+    <div class="section-kicker">ACCOUNT <span></span></div>
+    <h1>MY ORDERS</h1>
+
+    {% if orders is empty %}
+        <div class="empty-state">
+            <p>You have not placed any orders yet.</p>
+            <a class="button button--filled" href="{{ path('app_collection') }}">SHOP COLLECTION</a>
+        </div>
+    {% else %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ORDER #</th>
+                        <th>DATE</th>
+                        <th>PAYMENT</th>
+                        <th>STATUS</th>
+                        <th>TOTAL</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td><strong>#{{ order.id }}</strong></td>
+                            <td>{{ order.created_at|date('M d, Y h:i A') }}</td>
+                            <td>{{ order.payment_method|upper }}</td>
+                            <td>
+                                <span class="badge badge--{{ order.status }}">
+                                    {{ order.status|upper }}
+                                </span>
+                            </td>
+                            <td><strong>{{ order.total_amount|money }}</strong></td>
+                            <td>
+                                <a class="table-link" href="{{ path('app_customer_order', { id: order.id }) }}">View Details</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</main>
+{% endblock %}

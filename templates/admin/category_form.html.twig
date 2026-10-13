@@ -1,0 +1,25 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Add Category | Admin{% endblock %}
+
+{% block body %}
+<main class="admin-shell">
+    <div class="section-kicker">INVENTORY MANAGEMENT <span></span></div>
+    <h1>CREATE NEW CATEGORY</h1>
+
+    <section class="admin-card" style="max-width: 600px;">
+        <form action="javascript:void(0)" onsubmit="event.preventDefault(); return false;" class="auth-form" style="max-width: 100%;">
+            <label for="name">CATEGORY NAME <span style="color:#d32f2f;">*</span></label>
+            <input id="name" name="name" placeholder="e.g. Outerwear">
+
+            <label for="description">DESCRIPTION</label>
+            <textarea id="description" name="description" rows="3" placeholder="Category details..."></textarea>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="button button--filled" type="button" onclick="return false;">SAVE CATEGORY</button>
+                <a class="button button--outline" href="{{ path('app_admin_dashboard') }}">CANCEL</a>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

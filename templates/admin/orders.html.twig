@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Manage Orders | Gonzaga's Apparel{% endblock %}
+
+{% block body %}
+<main class="admin-shell">
+    <div class="section-kicker">ORDER MANAGEMENT <span></span></div>
+    <h1>MANAGE ORDERS</h1>
+
+    <div class="admin-filters" style="margin-bottom: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="{{ path('app_admin_orders') }}" class="button {% if selectedStatus is empty %}button--filled{% else %}button--outline{% endif %}">ALL</a>
+        <a href="{{ path('app_admin_orders', { status: 'pending' }) }}" class="button {% if selectedStatus == 'pending' %}button--filled{% else %}button--outline{% endif %}">PENDING</a>
+        <a href="{{ path('app_admin_orders', { status: 'processing' }) }}" class="button {% if selectedStatus == 'processing' %}button--filled{% else %}button--outline{% endif %}">PROCESSING</a>
+        <a href="{{ path('app_admin_orders', { status: 'shipped' }) }}" class="button {% if selectedStatus == 'shipped' %}button--filled{% else %}button--outline{% endif %}">SHIPPED</a>
+        <a href="{{ path('app_admin_orders', { status: 'completed' }) }}" class="button {% if selectedStatus == 'completed' %}button--filled{% else %}button--outline{% endif %}">COMPLETED</a>
+        <a href="{{ path('app_admin_orders', { status: 'cancelled' }) }}" class="button {% if selectedStatus == 'cancelled' %}button--filled{% else %}button--outline{% endif %}">CANCELLED</a>
+    </div>
+
+    <section class="admin-card">
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ORDER</th>
+                        <th>DATE</th>
+                        <th>CUSTOMER</th>
+                        <th>PAYMENT</th>
+                        <th>STATUS</th>
+                        <th>TOTAL</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td><strong>#{{ order.id }}</strong></td>
+                            <td>{{ order.created_at|date('M d, Y h:i A') }}</td>
+                            <td>
+                                <strong>{{ order.shipping_name|default(order.account_name) }}</strong><br>
+                                <small style="color: #666;">{{ order.email }}</small>
+                            </td>
+                            <td>
+                                <strong>{{ order.payment_method|upper }}</strong>
+                                {% if order.payment_receipt is not empty %}
+                                    <br><small style="color: #005ce6;">[Receipt Attached]</small>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="badge badge--{{ order.status }}">
+                                    {{ order.status|upper }}
+                                </span>
+                            </td>
+                            <td><strong>{{ order.total_amount|money }}</strong></td>
+                            <td>
+                                <a class="button button--filled" style="padding: 4px 10px; font-size: 11px;" href="{{ path('app_admin_order', { id: order.id }) }}">MANAGE</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="7" style="text-align: center;">No orders found matching the filter.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+{% endblock %}

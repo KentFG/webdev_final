@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FAQs | Gonzaga's Apparel{% endblock %}
+{% block body_class %}shop-page{% endblock %}
+
+{% block body %}
+<main class="shop-shell narrow">
+    <div class="section-kicker">CUSTOMER CARE <span></span></div>
+    <h1>FREQUENTLY ASKED QUESTIONS</h1>
+
+    <div class="care-page">
+        <h2>Orders &amp; Checkout</h2>
+        <h3>How do I place an order?</h3>
+        <p>Browse our collection, select your desired items, and click "ADD TO BAG". When ready, proceed to your bag and click "CHECKOUT" to fill in your shipping details and select payment method.</p>
+
+        <h3>What payment methods do you accept?</h3>
+        <p>We accept <strong>Cash on Delivery (COD)</strong> across serviceable areas and <strong>GCash</strong> e-wallet payments with receipt verification.</p>
+
+        <h2>Shipping &amp; Delivery</h2>
+        <h3>How long will delivery take?</h3>
+        <p>Metro Manila deliveries take 2–4 business days, while Provincial areas take 4–8 business days.</p>
+
+        <h3>How can I track my order?</h3>
+        <p>Log in to your account and navigate to <a href="{{ path('app_customer_orders') }}">My Orders</a> to view real-time status updates.</p>
+
+        <h2>Sizing &amp; Products</h2>
+        <h3>How do I know what size to order?</h3>
+        <p>Refer to our detailed <a href="{{ path('app_size_guide') }}">Size Guide</a> for exact measurements in centimeters and inches.</p>
+    </div>
+</main>
+{% endblock %}

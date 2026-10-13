@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{% if isEdit %}Edit Product{% else %}New Product{% endif %} | Admin{% endblock %}
+
+{% block body %}
+<main class="admin-shell">
+    <div class="section-kicker">INVENTORY MANAGEMENT <span></span></div>
+    <h1>{% if isEdit %}EDIT PRODUCT{% else %}CREATE NEW PRODUCT{% endif %}</h1>
+
+    <section class="admin-card" style="max-width: 700px;">
+        <form action="javascript:void(0)" onsubmit="event.preventDefault(); return false;" class="auth-form" style="max-width: 100%;">
+            <label for="name">PRODUCT NAME <span style="color:#d32f2f;">*</span></label>
+            <input id="name" name="name" value="{{ product.name }}" placeholder="e.g. ESSENTIAL BLACK T-SHIRT">
+
+            <label for="category_id">CATEGORY</label>
+            <select id="category_id" name="category_id" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 12px;">
+                <option value="0">Uncategorized</option>
+                {% for cat in categories %}
+                    <option value="{{ cat.id }}" {% if product.category_id == cat.id %}selected{% endif %}>{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="description">DESCRIPTION</label>
+            <textarea id="description" name="description" rows="3" placeholder="Minimal everyday essential.">{{ product.description }}</textarea>
+
+            <div class="form-grid">
+                <div>
+                    <label for="price">PRICE (PHP) <span style="color:#d32f2f;">*</span></label>
+                    <input id="price" name="price" type="number" step="0.01" min="0" value="{{ product.price }}">
+                </div>
+                <div>
+                    <label for="stock">STOCK QUANTITY <span style="color:#d32f2f;">*</span></label>
+                    <input id="stock" name="stock" type="number" min="0" value="{{ product.stock }}">
+                </div>
+            </div>
+
+            <label for="image">IMAGE FILENAME OR PATH</label>
+            <input id="image" name="image" value="{{ product.image }}" placeholder="e.g. black-tshirt-placeholder.svg">
+            <small style="color: #666; font-size: 11px;">Available placeholders: black-tshirt-placeholder.svg, white-tshirt-placeholder.svg, hoodie-placeholder.svg, cap-placeholder.svg, tote-placeholder.svg</small>
+
+            <div style="margin-top: 15px;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" name="is_active" value="1" {% if product.is_active %}checked{% endif %}>
+                    <span>Active in store catalog</span>
+                </label>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="button button--filled" type="button" onclick="return false;">{% if isEdit %}SAVE CHANGES{% else %}CREATE PRODUCT{% endif %}</button>
+                <a class="button button--outline" href="{{ path('app_admin_dashboard') }}">CANCEL</a>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gonzaga's Apparel | Everyday Essentials{% endblock %}
+
+{% block body %}
+<main>
+    <section class="hero" id="home">
+        <div class="hero-copy">
+            <div class="section-kicker">CLOTHING THAT DEFINES YOU <span></span></div>
+            <h1>STAY COMFORTABLE.<br>STAY CONFIDENT.</h1>
+            <p class="hero-lede">Minimal design. Maximum impact.<br>Every piece is made to elevate<br>your everyday.</p>
+            <a class="button button--filled" href="{{ path('app_collection') }}">SHOP COLLECTION {{ icon('arrow') }}</a>
+        </div>
+        <div class="media-placeholder media-placeholder--hero">
+            <img class="hero-svg" src="{{ asset('assets/images/hero-placeholder.png') }}" alt="Hero image placeholder">
+        </div>
+    </section>
+
+    <section class="about section" id="about">
+        <div class="about-logo-area">
+            <div class="large-brand">
+                <img class="logo-placeholder logo-placeholder--large logo-placeholder--about" src="{{ asset('assets/images/logo2-placeholder.svg') }}" alt="Gonzaga's Apparel logo">
+            </div>
+        </div>
+        <div class="about-copy">
+            <div class="section-kicker">ABOUT US <span></span></div>
+            <h2>SIMPLE. MODERN. PURPOSEFUL.</h2>
+            <p>Gonzaga's Apparel is a clothing brand built on minimalism, quality, and everyday wearability. Our goal is to create timeless pieces that fit your lifestyle and express who you are.</p>
+            <a class="button button--outline" href="#contact">LEARN MORE {{ icon('arrow') }}</a>
+        </div>
+    </section>
+
+    <section class="values section" id="why-us">
+        <div class="section-heading">
+            <div class="section-kicker">WHY CHOOSE US <span></span></div>
+            <h2>MADE FOR QUALITY. MADE FOR YOU.</h2>
+        </div>
+        <div class="values-grid container">
+            {% for value in values %}
+                <article class="value-card">
+                    <div class="line-icon">{{ icon(value.icon) }}</div>
+                    <h3>{{ value.title }}</h3>
+                    <p>{{ value.copy }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="collection section" id="collection">
+        <div class="section-heading">
+            <div class="section-kicker">FEATURED PIECES <span></span></div>
+            <h2>THE CORE COLLECTION</h2>
+        </div>
+        <div class="empty-state container" style="padding: 60px 20px; text-align: center;">
+            <p style="font-size: 1.1rem; font-weight: 600; letter-spacing: .08em; margin-bottom: 8px;">COMING SOON</p>
+            <p style="color: #666; font-size: 0.85rem;">Our collection is on its way. Check back soon for our latest pieces.</p>
+        </div>
+    </section>
+
+    {# ── Testimonials / Reviews ──────────────────────── #}
+    <section class="lookbook section" id="lookbook">
+        <div class="section-heading">
+            <div class="section-kicker">TESTIMONIALS <span></span></div>
+            <h2>WHAT OUR COMMUNITY SAYS</h2>
+            <p class="section-sub">Real words from real customers who wear Gonzaga's every day.</p>
+        </div>
+        <div class="reviews-grid container">
+            {% for t in testimonials %}
+                <article class="review-card">
+                    <div class="review-stars">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="review-quote">"{{ t.quote }}"</p>
+                    <div class="review-author">
+                        <div class="review-avatar">{{ t.name|slice(0,1) }}</div>
+                        <span class="review-name">{{ t.name }}</span>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# ── Contact ─────────────────────────────────────── #}
+    <section class="contact section" id="contact">
+        <div class="section-heading">
+            <div class="section-kicker">GET IN TOUCH <span></span></div>
+            <h2>WE'D LOVE TO HEAR FROM YOU</h2>
+            <p class="section-sub">We're here to help with any questions or concerns.</p>
+        </div>
+        <div class="contact-body container">
+            <div class="contact-info-grid">
+                <div class="contact-info-item">
+                    <div class="contact-icon">✉</div>
+                    <div>
+                        <strong>Email Us</strong>
+                        <p>support@gonzagas.local</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Call Us</strong>
+                        <p>+63 917 123 4567</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <strong>Business Hours</strong>
+                        <p>Mon – Sat: 9:00 AM – 6:00 PM PHT</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="contact-cta">
+                <p>You can also reach us through our social media pages or send us a direct message anytime.</p>
+                <div class="contact-social-links">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact-social-btn">Facebook</a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-social-btn">Instagram</a>
+                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="contact-social-btn">TikTok</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

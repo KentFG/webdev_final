@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Gonzaga's Apparel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <a class="auth-logo" href="{{ path('app_home') }}">
+            <img src="{{ asset('assets/images/logo2-placeholder.svg') }}" alt="Gonzaga's Apparel">
+        </a>
+        <section class="auth-card">
+            <div class="section-kicker">WELCOME BACK <span></span></div>
+            <h1>LOGIN</h1>
+            <p class="auth-intro">Access your Gonzaga's Apparel account.</p>
+
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert {{ label }}">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+
+            <form action="{{ path('app_login') }}" method="post" class="auth-form" novalidate autocomplete="off">
+                <label for="email">EMAIL</label>
+                <input id="email" name="email" type="email" value="{{ email }}" autocomplete="email" required>
+
+                <label for="password">PASSWORD</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+                <button class="button button--filled" type="submit">LOGIN</button>
+            </form>
+
+            <div style="margin-top: 15px; padding: 10px; background: #f8f8f8; border-radius: 4px; font-size: 11px; line-height: 1.4; color: #666;">
+                <strong>Demo Accounts:</strong><br>
+                • Admin: <code>admin@gonzagas.local</code> / <code>Admin@123!</code><br>
+                • Customer: <code>customer@gonzagas.local</code> / <code>Customer@123!</code>
+            </div>
+
+            <p class="auth-switch">New customer? <a href="{{ path('app_signup') }}">Create an account</a></p>
+            <a class="auth-back" href="{{ path('app_home') }}">← Back to homepage</a>
+        </section>
+    </main>
+</body>
+</html>

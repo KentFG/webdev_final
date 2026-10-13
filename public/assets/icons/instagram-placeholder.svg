@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>.cls-1{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:1.5px;}</style>
+  </defs>
+  <rect class="cls-1" x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path class="cls-1" d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line class="cls-1" x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+</svg>
