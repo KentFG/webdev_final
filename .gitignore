@@ -8,6 +8,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+<<<<<<< HEAD
 
 ###> phpunit/phpunit ###
 /phpunit.xml
@@ -19,3 +20,5 @@
 /public/assets/uploads/*
 !/public/assets/uploads/receipts/.gitkeep
 ###< symfony/asset-mapper ###
+=======
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8

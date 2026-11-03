@@ -37,7 +37,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  * @psalm-type ArgumentsType = list<mixed>|array<string, mixed>
  * @psalm-type CallType = array<string, ArgumentsType>|array{0:string, 1?:ArgumentsType, 2?:bool}|array{method:string, arguments?:ArgumentsType, returns_clone?:bool}
  * @psalm-type TagsType = list<string|array<string, array<string, mixed>>> // arrays inside the list must have only one element, with the tag name as the key
+<<<<<<< HEAD
  * @psalm-type CallbackType = string|array{0:string|ReferenceConfigurator,1:string}|\Closure|ReferenceConfigurator|ExpressionConfigurator
+=======
+ * @psalm-type CallbackType = string|array{0:string|ReferenceConfigurator,1:string}|\Closure|ReferenceConfigurator
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  * @psalm-type DeprecationType = array{package: string, version: string, message?: string}
  * @psalm-type DefaultsType = array{
  *     public?: bool,
@@ -154,7 +158,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         cookie_name?: scalar|Param|null, // The name of the cookie to use when using stateless protection. // Default: "csrf-token"
  *     },
  *     form?: bool|array{ // Form configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         csrf_protection?: bool|array{
  *             enabled?: scalar|Param|null, // Default: null
  *             token_id?: scalar|Param|null, // Default: null
@@ -286,7 +294,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         }>,
  *     },
  *     asset_mapper?: bool|array{ // Asset Mapper configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         paths?: Param|string|array<string, scalar|Param|null>,
  *         excluded_patterns?: list<scalar|Param|null>,
  *         exclude_dotfiles?: bool|Param, // If true, any files starting with "." will be excluded from the asset mapper. // Default: true
@@ -305,7 +317,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         },
  *     },
  *     translator?: bool|array{ // Translator configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         fallbacks?: Param|string|list<scalar|Param|null>,
  *         logging?: bool|Param, // Default: false
  *         formatter?: scalar|Param|null, // Default: "translator.formatter.default"
@@ -333,7 +349,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         }>,
  *     },
  *     validation?: bool|array{ // Validation configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         enable_attributes?: bool|Param, // Default: true
  *         static_method?: Param|string|list<scalar|Param|null>,
  *         translation_domain?: scalar|Param|null, // Default: "validators"
@@ -352,7 +372,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         }>,
  *     },
  *     serializer?: bool|array{ // Serializer configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         enable_attributes?: bool|Param, // Default: true
  *         name_converter?: scalar|Param|null,
  *         circular_reference_handler?: scalar|Param|null,
@@ -369,7 +393,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         }>,
  *     },
  *     property_access?: bool|array{ // Property access configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         magic_call?: bool|Param, // Default: false
  *         magic_get?: bool|Param, // Default: true
  *         magic_set?: bool|Param, // Default: true
@@ -377,11 +405,19 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         throw_exception_on_invalid_property_path?: bool|Param, // Default: true
  *     },
  *     type_info?: bool|array{ // Type info configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
  *         aliases?: array<string, scalar|Param|null>,
  *     },
  *     property_info?: bool|array{ // Property info configuration
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+ *         aliases?: array<string, scalar|Param|null>,
+ *     },
+ *     property_info?: bool|array{ // Property info configuration
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         with_constructor_extractor?: bool|Param, // Registers the constructor extractor. // Default: true
  *     },
  *     cache?: array{ // Cache configuration
@@ -416,7 +452,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         log_channel?: scalar|Param|null, // The channel of log message. Null to let Symfony decide. // Default: null
  *     }>,
  *     web_link?: bool|array{ // Web links configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *     },
  *     lock?: Param|bool|string|array{ // Lock configuration
  *         enabled?: bool|Param, // Default: false
@@ -427,7 +467,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         resources?: Param|string|array<string, scalar|Param|null>,
  *     },
  *     messenger?: bool|array{ // Messenger configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         routing?: array<string, Param|string|list<scalar|Param|null>>,
  *         serializer?: array{
  *             default_serializer?: scalar|Param|null, // Service id to use as the default serializer for the transports. // Default: "messenger.transport.native_php_serializer"
@@ -471,7 +515,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     disallow_search_engine_index?: bool|Param, // Enabled by default when debug is enabled. // Default: true
  *     http_client?: bool|array{ // HTTP Client configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         max_host_connections?: int|Param, // The maximum number of connections to a single host.
  *         default_options?: array{
  *             headers?: array<string, mixed>,
@@ -576,7 +624,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         }>,
  *     },
  *     mailer?: bool|array{ // Mailer configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         message_bus?: scalar|Param|null, // The message bus to use. Defaults to the default bus if the Messenger component is installed. // Default: null
  *         dsn?: scalar|Param|null, // Default: null
  *         transports?: array<string, scalar|Param|null>,
@@ -617,7 +669,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         decryption_env_var?: scalar|Param|null, // Default: "base64:default::SYMFONY_DECRYPTION_SECRET"
  *     },
  *     notifier?: bool|array{ // Notifier configuration
+<<<<<<< HEAD
  *         enabled?: bool|Param, // Default: true
+=======
+ *         enabled?: bool|Param, // Default: false
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *         message_bus?: scalar|Param|null, // The message bus to use. Defaults to the default bus if the Messenger component is installed. // Default: null
  *         chatter_transports?: array<string, scalar|Param|null>,
  *         texter_transports?: array<string, scalar|Param|null>,
@@ -701,6 +757,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         },
  *     },
  * }
+<<<<<<< HEAD
  * @psalm-type DoctrineConfig = array{
  *     dbal?: array{
  *         default_connection?: scalar|Param|null,
@@ -922,6 +979,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     dump_destination?: scalar|Param|null, // A stream URL where dumps should be written to. // Default: null
  *     theme?: "dark"|"light"|Param, // Changes the color of the dump() output when rendered directly on the templating. "dark" (default) or "light". // Default: "dark"
  * }
+=======
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  * @psalm-type TwigConfig = array{
  *     form_themes?: list<scalar|Param|null>,
  *     globals?: array<string, array{ // Default: []
@@ -955,6 +1014,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         html_to_text_converter?: scalar|Param|null, // A service implementing the "Symfony\Component\Mime\HtmlToTextConverter\HtmlToTextConverterInterface". // Default: null
  *     },
  * }
+<<<<<<< HEAD
  * @psalm-type WebProfilerConfig = array{
  *     toolbar?: bool|array{ // Profiler toolbar configuration
  *         enabled?: bool|Param, // Default: false
@@ -1488,11 +1548,14 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     generate_final_classes?: bool|Param, // Default: true
  *     generate_final_entities?: bool|Param, // Default: false
  * }
+=======
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
  *     services?: ServicesConfig,
  *     framework?: FrameworkConfig,
+<<<<<<< HEAD
  *     doctrine?: DoctrineConfig,
  *     doctrine_migrations?: DoctrineMigrationsConfig,
  *     twig?: TwigConfig,
@@ -1501,11 +1564,15 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     twig_extra?: TwigExtraConfig,
  *     security?: SecurityConfig,
  *     monolog?: MonologConfig,
+=======
+ *     twig?: TwigConfig,
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
  *         services?: ServicesConfig,
  *         framework?: FrameworkConfig,
+<<<<<<< HEAD
  *         doctrine?: DoctrineConfig,
  *         doctrine_migrations?: DoctrineMigrationsConfig,
  *         debug?: DebugConfig,
@@ -1517,12 +1584,16 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
  *         maker?: MakerConfig,
+=======
+ *         twig?: TwigConfig,
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
  *         services?: ServicesConfig,
  *         framework?: FrameworkConfig,
+<<<<<<< HEAD
  *         doctrine?: DoctrineConfig,
  *         doctrine_migrations?: DoctrineMigrationsConfig,
  *         twig?: TwigConfig,
@@ -1531,12 +1602,16 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         twig_extra?: TwigExtraConfig,
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
+=======
+ *         twig?: TwigConfig,
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
  *         services?: ServicesConfig,
  *         framework?: FrameworkConfig,
+<<<<<<< HEAD
  *         doctrine?: DoctrineConfig,
  *         doctrine_migrations?: DoctrineMigrationsConfig,
  *         twig?: TwigConfig,
@@ -1546,6 +1621,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         twig_extra?: TwigExtraConfig,
  *         security?: SecurityConfig,
  *         monolog?: MonologConfig,
+=======
+ *         twig?: TwigConfig,
+>>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,
