@@ -1887,11 +1887,13 @@ p {
 }
 
 .contact-info-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    justify-content: center;
     gap: 20px;
     width: 100%;
+    flex-wrap: wrap; /* Allows cards to wrap onto new lines on small screens */
 }
+
 
 .contact-info-item {
     display: flex;
@@ -1902,6 +1904,9 @@ p {
     border-radius: 4px;
     padding: 22px 18px;
     transition: border-color .2s;
+    flex: 1;
+    min-width: 280px;
+    max-width: 340px
 }
 
 .contact-info-item:hover {
@@ -1967,7 +1972,7 @@ p {
     color: #111;
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
     .contact-info-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1977,7 +1982,7 @@ p {
     .contact-info-grid {
         grid-template-columns: 1fr;
     }
-}
+} */
 
 /* ── Footer Improvements ─────────────────────────── */
 .footer-col h4 {

@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "doctrine/deprecations": {
         "version": "1.1",
         "recipe": {
@@ -65,10 +64,6 @@
             "./config/packages/asset_mapper.yaml",
             "./importmap.php"
         ]
-=======
-    "symfony/apache-pack": {
-        "version": "v1.0.1"
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
     },
     "symfony/console": {
         "version": "8.1",
@@ -82,7 +77,6 @@
             "./bin/console"
         ]
     },
-<<<<<<< HEAD
     "symfony/debug-bundle": {
         "version": "8.1",
         "recipe": {
@@ -97,10 +91,6 @@
     },
     "symfony/flex": {
         "version": "2.12",
-=======
-    "symfony/flex": {
-        "version": "2.11",
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -112,7 +102,6 @@
             "./.env.dev"
         ]
     },
-<<<<<<< HEAD
     "symfony/form": {
         "version": "8.1",
         "recipe": {
@@ -125,19 +114,13 @@
             "./config/packages/csrf.yaml"
         ]
     },
-=======
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
     "symfony/framework-bundle": {
         "version": "8.1",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "8.1",
-<<<<<<< HEAD
             "ref": "3eee55306efebbd99462341126bbd4cac7cd8ba7"
-=======
-            "ref": "5295b2b1ef2170b272383b2b0ae0b66702883822"
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
         },
         "files": [
             "./config/packages/cache.yaml",
@@ -149,7 +132,6 @@
             "./src/Controller/.gitignore",
             "./src/Kernel.php",
             "./.editorconfig",
-<<<<<<< HEAD
             "./AGENTS.md"
         ]
     },
@@ -220,10 +202,6 @@
         },
         "files": [
             "./config/packages/property_info.yaml"
-=======
-            "./AGENTS.md",
-            "./CLAUDE.md"
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
         ]
     },
     "symfony/routing": {
@@ -239,7 +217,6 @@
             "./config/routes.yaml"
         ]
     },
-<<<<<<< HEAD
     "symfony/security-bundle": {
         "version": "8.1",
         "recipe": {
@@ -281,8 +258,6 @@
             "./translations/.gitignore"
         ]
     },
-=======
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
     "symfony/twig-bundle": {
         "version": "8.1",
         "recipe": {
@@ -295,7 +270,6 @@
             "./config/packages/twig.yaml",
             "./templates/base.html.twig"
         ]
-<<<<<<< HEAD
     },
     "symfony/ux-turbo": {
         "version": "3.6",
@@ -348,7 +322,5 @@
     },
     "twig/extra-bundle": {
         "version": "v3.29.0"
-=======
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
     }
 }

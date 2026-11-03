@@ -7,12 +7,12 @@
         "php": ">=8.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
-<<<<<<< HEAD
         "doctrine/doctrine-bundle": "^3.3",
         "doctrine/doctrine-migrations-bundle": "^4.0",
         "doctrine/orm": "^3.7",
         "phpdocumentor/reflection-docblock": "^6.0",
         "phpstan/phpdoc-parser": "^2.4",
+        "symfony/apache-pack": "*",
         "symfony/asset": "8.1.*",
         "symfony/asset-mapper": "8.1.*",
         "symfony/console": "8.1.*",
@@ -33,6 +33,7 @@
         "symfony/property-info": "8.1.*",
         "symfony/runtime": "8.1.*",
         "symfony/security-bundle": "8.1.*",
+        "symfony/security-csrf": "8.1.*",
         "symfony/serializer": "8.1.*",
         "symfony/stimulus-bundle": "^3.6",
         "symfony/string": "8.1.*",
@@ -44,18 +45,6 @@
         "symfony/yaml": "8.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
-=======
-        "symfony/apache-pack": "*",
-        "symfony/asset": "8.1.*",
-        "symfony/console": "8.1.*",
-        "symfony/dotenv": "8.1.*",
-        "symfony/flex": "^2",
-        "symfony/framework-bundle": "8.1.*",
-        "symfony/runtime": "8.1.*",
-        "symfony/security-csrf": "8.1.*",
-        "symfony/twig-bundle": "8.1.*",
-        "symfony/yaml": "8.1.*"
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
     },
     "config": {
         "allow-plugins": {
@@ -91,12 +80,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-<<<<<<< HEAD
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd"
-=======
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -113,7 +98,6 @@
             "allow-contrib": false,
             "require": "8.1.*"
         }
-<<<<<<< HEAD
     },
     "require-dev": {
         "phpunit/phpunit": "^13.4",
@@ -123,7 +107,5 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/stopwatch": "8.1.*",
         "symfony/web-profiler-bundle": "8.1.*"
-=======
->>>>>>> cbb5418ba646273a366f53d278b5095cab7e6ec8
     }
 }
