@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Profile | Gonzaga's Apparel{% endblock %}
+{% block body_class %}shop-page{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+{% endblock %}
+
+{% block body %}
+<main class="shop-shell narrow">
+    <div class="section-kicker">ACCOUNT <span></span></div>
+    <h1>MY PROFILE</h1>
+
+    <form action="{{ path('app_customer_profile') }}" method="post" class="auth-form profile-form">
+        <label for="name">FULL NAME</label>
+        <input id="name" name="name" value="{{ user.name }}" required autocomplete="name">
+
+        <label for="email">EMAIL ADDRESS</label>
+        <input id="email" value="{{ user.email }}" disabled>
+
+        <label for="phone">PHONE NUMBER</label>
+        <input id="phone" name="phone" value="{{ profile.phone }}" required autocomplete="tel" placeholder="09xxxxxxxxx">
+
+        <label for="address_line1">ADDRESS LINE 1</label>
+        <input id="address_line1" name="address_line1" value="{{ profile.address_line1 }}" required autocomplete="address-line1">
+
+        <label for="address_line2">ADDRESS LINE 2</label>
+        <input id="address_line2" name="address_line2" value="{{ profile.address_line2 }}" autocomplete="address-line2">
+
+        <div class="form-grid">
+            <div>
+                <label for="city">CITY</label>
+                <input id="city" name="city" value="{{ profile.city }}" required autocomplete="address-level2">
+            </div>
+            <div>
+                <label for="province">PROVINCE</label>
+                <input id="province" name="province" value="{{ profile.province }}" required autocomplete="address-level1">
+            </div>
+        </div>
+
+        <div class="form-grid">
+            <div>
+                <label for="postal_code">POSTAL CODE</label>
+                <input id="postal_code" name="postal_code" value="{{ profile.postal_code }}" required autocomplete="postal-code">
+            </div>
+            <div>
+                <label for="country">COUNTRY</label>
+                <input id="country" name="country" value="{{ profile.country|default('Philippines') }}" required autocomplete="country-name">
+            </div>
+        </div>
+
+        <button class="button button--filled" type="submit" style="margin-top: 1rem;">SAVE PROFILE</button>
+    </form>
+</main>
+{% endblock %}

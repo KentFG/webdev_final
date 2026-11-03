@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shopping Bag | Gonzaga's Apparel{% endblock %}
+{% block body_class %}shop-page{% endblock %}
+
+{% block body %}
+<main class="shop-shell">
+    <div class="section-kicker">YOUR BAG <span></span></div>
+    <h1>SHOPPING BAG</h1>
+
+    {% if items is empty %}
+        <div class="empty-state">
+            <p>Your bag is currently empty.</p>
+            <a class="button button--filled" href="{{ path('app_collection') }}">SHOP COLLECTION</a>
+        </div>
+    {% else %}
+        <div class="cart-list">
+            {% for item in items %}
+                <article class="cart-item">
+                    <img src="{{ product_image_src(item.image) }}" alt="{{ item.name }}">
+                    <div>
+                        <h2>{{ item.name }}</h2>
+                        <p>{{ item.price|money }} × {{ item.qty }}</p>
+                        <strong>{{ item.subtotal|money }}</strong>
+                    </div>
+                    <form action="{{ path('app_cart_remove', { id: item.id }) }}" method="post">
+                        <button type="submit" class="text-button">REMOVE</button>
+                    </form>
+                </article>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <span>TOTAL</span>
+            <strong>{{ total|money }}</strong>
+            {% if is_logged_in() %}
+                <a class="button button--filled" href="{{ path('app_checkout') }}">PROCEED TO CHECKOUT</a>
+            {% else %}
+                <a class="button button--filled" href="{{ path('app_login') }}">LOGIN TO CHECKOUT</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</main>
+{% endblock %}

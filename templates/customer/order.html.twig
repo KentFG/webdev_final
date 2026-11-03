@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order #{{ order.id }} | Gonzaga's Apparel{% endblock %}
+{% block body_class %}shop-page{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+{% endblock %}
+
+{% block body %}
+<main class="shop-shell">
+    <div class="section-kicker">ORDER #{{ order.id }} <span></span></div>
+    <h1>ORDER DETAILS</h1>
+
+    <div class="order-details-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+        <div class="card" style="background: #fff; padding: 1.5rem; border: 1px solid #eee; border-radius: 6px;">
+            <h3>ORDER STATUS</h3>
+            <p style="margin: 0.5rem 0;">Status: <strong style="text-transform: uppercase;">{{ order.status }}</strong></p>
+            <p style="margin: 0.5rem 0;">Placed on: {{ order.created_at|date('F d, Y h:i A') }}</p>
+            <p style="margin: 0.5rem 0;">Payment: <strong>{{ order.payment_method|upper }}</strong> ({{ order.payment_status|upper }})</p>
+            {% if order.payment_reference is not empty %}
+                <p style="margin: 0.5rem 0;">Reference: <code>{{ order.payment_reference }}</code></p>
+            {% endif %}
+            {% if order.driver_name is not empty %}
+                <p style="margin: 0.5rem 0;">Delivery Rider: <strong>{{ order.driver_name }}</strong></p>
+            {% endif %}
+        </div>
+
+        <div class="card" style="background: #fff; padding: 1.5rem; border: 1px solid #eee; border-radius: 6px;">
+            <h3>SHIPPING ADDRESS</h3>
+            <p style="margin: 0.5rem 0;"><strong>{{ order.shipping_name }}</strong></p>
+            <p style="margin: 0.5rem 0;">{{ order.shipping_phone }}</p>
+            <p style="margin: 0.5rem 0;">
+                {{ order.shipping_address1 }}
+                {% if order.shipping_address2 is not empty %}, {{ order.shipping_address2 }}{% endif %}<br>
+                {{ order.shipping_city }}, {{ order.shipping_province }} {{ order.shipping_postal_code }}<br>
+                {{ order.shipping_country }}
+            </p>
+            {% if order.notes is not empty %}
+                <p style="margin-top: 0.5rem; font-size: 12px; color: #666;"><em>Notes: {{ order.notes }}</em></p>
+            {% endif %}
+        </div>
+    </div>
+
+    <h2 style="margin-top: 2rem;">ITEMS IN THIS ORDER</h2>
+    <div class="table-wrap" style="margin-top: 1rem;">
+        <table>
+            <thead>
+                <tr>
+                    <th>ITEM</th>
+                    <th>UNIT PRICE</th>
+                    <th>QTY</th>
+                    <th>SUBTOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items %}
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="{{ product_image_src(item.image) }}" alt="{{ item.product_name }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;">
+                                <strong>{{ item.product_name }}</strong>
+                            </div>
+                        </td>
+                        <td>{{ item.unit_price|money }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td><strong>{{ item.subtotal|money }}</strong></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="text-align: right;"><strong>Subtotal:</strong></td>
+                    <td><strong>{{ order.subtotal_amount|money }}</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right;"><strong>Shipping:</strong></td>
+                    <td><strong>{% if order.shipping_fee == 0 %}FREE{% else %}{{ order.shipping_fee|money }}{% endif %}</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right; font-size: 1.1rem;"><strong>Grand Total:</strong></td>
+                    <td style="font-size: 1.1rem;"><strong>{{ order.total_amount|money }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div style="margin-top: 2rem;">
+        <a class="button button--outline" href="{{ path('app_customer_orders') }}">← BACK TO ORDERS</a>
+    </div>
+</main>
+{% endblock %}

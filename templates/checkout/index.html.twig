@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout | Gonzaga's Apparel{% endblock %}
+{% block body_class %}shop-page{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+{% endblock %}
+
+{% block body %}
+<main class="shop-shell">
+    <div class="section-kicker">CHECKOUT <span></span></div>
+    <h1>CONFIRM &amp; PAY</h1>
+
+    <div class="checkout-layout">
+        <form action="{{ path('app_checkout_process') }}" method="post" enctype="multipart/form-data" class="auth-form checkout-form">
+            <h2>SHIPPING ADDRESS</h2>
+
+            <label for="name">FULL NAME <span style="color:#d32f2f;">*</span></label>
+            <input id="name" name="name" value="{{ old.name|default(user.name) }}" required autocomplete="name">
+
+            <label for="phone">MOBILE PHONE NUMBER <span style="color:#d32f2f;">*</span></label>
+            <input id="phone" name="phone" value="{{ old.phone|default('') }}" required placeholder="09xxxxxxxxx" autocomplete="tel">
+
+            <label for="address_line1">ADDRESS LINE 1 <span style="color:#d32f2f;">*</span></label>
+            <input id="address_line1" name="address_line1" value="{{ old.address_line1|default('') }}" required placeholder="House/Unit #, Street, Barangay" autocomplete="address-line1">
+
+            <label for="address_line2">ADDRESS LINE 2 (OPTIONAL)</label>
+            <input id="address_line2" name="address_line2" value="{{ old.address_line2|default('') }}" placeholder="Building, Floor, Landmark" autocomplete="address-line2">
+
+            <div class="form-grid">
+                <div>
+                    <label for="city">CITY <span style="color:#d32f2f;">*</span></label>
+                    <input id="city" name="city" value="{{ old.city|default('') }}" required autocomplete="address-level2">
+                </div>
+                <div>
+                    <label for="province">PROVINCE <span style="color:#d32f2f;">*</span></label>
+                    <input id="province" name="province" value="{{ old.province|default('') }}" required autocomplete="address-level1">
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div>
+                    <label for="postal_code">POSTAL CODE <span style="color:#d32f2f;">*</span></label>
+                    <input id="postal_code" name="postal_code" value="{{ old.postal_code|default('') }}" required autocomplete="postal-code">
+                </div>
+                <div>
+                    <label for="country">COUNTRY <span style="color:#d32f2f;">*</span></label>
+                    <input id="country" name="country" value="{{ old.country|default('Philippines') }}" required autocomplete="country-name">
+                </div>
+            </div>
+
+            <h2 style="margin-top: 1.5rem;">PAYMENT METHOD</h2>
+            <div class="payment-method-selector">
+                <label class="payment-choice-label is-selected-cod" id="label_cod">
+                    <input type="radio" name="payment_method" value="cod" checked onchange="togglePaymentSection('cod')">
+                    <span>💵 Cash on Delivery</span>
+                </label>
+                <label class="payment-choice-label" id="label_gcash">
+                    <input type="radio" name="payment_method" value="gcash" onchange="togglePaymentSection('gcash')">
+                    <span><img src="{{ asset('assets/icons/gcash.svg') }}" alt="GCash" style="height:18px; width:18px; display:inline-block; vertical-align:middle; margin-right:4px;"> GCash (E-Wallet)</span>
+                </label>
+            </div>
+
+            <!-- COD Details -->
+            <div id="cod_details_box" class="payment-option-card is-active">
+                <div class="cod-badge-notice">
+                    <strong>💵 Cash on Delivery (COD)</strong><br>
+                    Please prepare the exact cash amount of <strong>{{ total|money }}</strong> upon delivery.<br>
+                    <em>Note: Your delivery rider will hand over your package and acknowledge payment receipt.</em>
+                </div>
+            </div>
+
+            <!-- GCash Details -->
+            <div id="gcash_details_box" class="payment-option-card" style="display:none;">
+                <div class="gcash-replica-header">
+                    <div style="display:inline-flex; align-items:center; gap:8px;">
+                        <img src="{{ asset('assets/icons/gcash.svg') }}" alt="GCash" class="gcash-replica-logo">
+                        <strong style="font-size:18px; font-weight:800; color:#005ce6; letter-spacing:-0.2px;">GCash</strong>
+                    </div>
+                    <span style="font-size:11px; font-weight:700; color:#005ce6; letter-spacing:0.04em; margin-left:auto;">OFFICIAL MERCHANT ACCOUNT</span>
+                </div>
+
+                <div class="gcash-account-box">
+                    <div>Merchant Account Name: <strong>GONZAGA'S APPAREL</strong></div>
+                    <div style="margin-top:4px;">GCash Mobile Number: <strong>0917 123 4567</strong></div>
+                    <div style="margin-top:4px;">Exact Amount to Pay: <strong style="font-size:14px;">{{ total|money }}</strong></div>
+                </div>
+
+                <label style="margin-top:12px;">UPLOAD CONFIRMATION RECEIPT PICTURE <span style="color:#d32f2f;">*</span></label>
+                <input type="file" name="payment_receipt" id="payment_receipt_input" accept="image/*" onchange="previewReceipt(event)">
+                <small style="display:block; color:#666; font-size:10px; margin-top:4px;">Please upload a screenshot or photo of your confirmed GCash transaction receipt (JPG, PNG, WEBP).</small>
+                
+                <div id="receipt_preview_box" class="receipt-preview-container" style="display:none; margin-top:10px;">
+                    <img id="receipt_preview_img" src="#" alt="Receipt Preview" style="max-height:180px; border-radius:4px; border:1px solid #ccc;">
+                    <span style="display:block; font-size:10px; color:#2e7d32; margin-top:4px;">✓ Receipt image selected</span>
+                </div>
+
+                <label style="margin-top:12px;" for="payment_reference">GCASH REFERENCE NO. (OPTIONAL)</label>
+                <input type="text" id="payment_reference" name="payment_reference" value="{{ old.payment_reference|default('') }}" placeholder="e.g. 1002 9384 1928" maxlength="50">
+            </div>
+
+            <label style="margin-top:16px;" for="notes">ORDER NOTES (OPTIONAL)</label>
+            <textarea id="notes" name="notes" rows="3" maxlength="500" placeholder="Delivery instructions, gate code, landmarks...">{{ old.notes|default('') }}</textarea>
+
+            <button class="button button--filled" type="submit" style="margin-top:16px; width:100%;">CONFIRM &amp; PLACE ORDER — {{ total|money }}</button>
+        </form>
+
+        <aside class="checkout-summary">
+            <h2>ORDER SUMMARY</h2>
+            {% for item in items %}
+                <div class="summary-row">
+                    <span>{{ item.name }} × {{ item.qty }}</span>
+                    <strong>{{ item.subtotal|money }}</strong>
+                </div>
+            {% endfor %}
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <strong>{{ subtotal|money }}</strong>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <strong>{% if shipping == 0 %}FREE{% else %}{{ shipping|money }}{% endif %}</strong>
+            </div>
+            <div class="summary-total">
+                <span>Total</span>
+                <strong>{{ total|money }}</strong>
+            </div>
+            <p class="checkout-note">Free shipping on orders of ₱2,500 or more.</p>
+        </aside>
+    </div>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+function togglePaymentSection(method) {
+    const codBox = document.getElementById('cod_details_box');
+    const gcashBox = document.getElementById('gcash_details_box');
+    const labelCod = document.getElementById('label_cod');
+    const labelGcash = document.getElementById('label_gcash');
+    const receiptInput = document.getElementById('payment_receipt_input');
+
+    if (method === 'gcash') {
+        codBox.style.display = 'none';
+        codBox.classList.remove('is-active');
+        gcashBox.style.display = 'block';
+        gcashBox.classList.add('is-active');
+        labelGcash.classList.add('is-selected');
+        labelCod.classList.remove('is-selected-cod');
+        if (receiptInput) receiptInput.required = true;
+    } else {
+        gcashBox.style.display = 'none';
+        gcashBox.classList.remove('is-active');
+        codBox.style.display = 'block';
+        codBox.classList.add('is-active');
+        labelCod.classList.add('is-selected-cod');
+        labelGcash.classList.remove('is-selected');
+        if (receiptInput) receiptInput.required = false;
+    }
+}
+
+function previewReceipt(event) {
+    const file = event.target.files[0];
+    const previewBox = document.getElementById('receipt_preview_box');
+    const previewImg = document.getElementById('receipt_preview_img');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImg.src = e.target.result;
+            previewBox.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        previewBox.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

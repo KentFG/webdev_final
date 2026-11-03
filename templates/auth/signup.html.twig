@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Gonzaga's Apparel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <a class="auth-logo" href="{{ path('app_home') }}">
+            <img src="{{ asset('assets/images/logo2-placeholder.svg') }}" alt="Gonzaga's Apparel">
+        </a>
+        <section class="auth-card">
+            <div class="section-kicker">JOIN GONZAGA'S <span></span></div>
+            <h1>CREATE ACCOUNT</h1>
+            <p class="auth-intro">Sign up for seamless checkout and order tracking.</p>
+
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert {{ label }}">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+
+            <form action="{{ path('app_signup') }}" method="post" class="auth-form" novalidate autocomplete="off">
+                <label for="name">FULL NAME</label>
+                <input id="name" name="name" type="text" value="{{ name }}" autocomplete="name" required>
+
+                <label for="email">EMAIL ADDRESS</label>
+                <input id="email" name="email" type="email" value="{{ email }}" autocomplete="email" required>
+
+                <label for="password">PASSWORD</label>
+                <input id="password" name="password" type="password" autocomplete="new-password" required minlength="8">
+
+                <label for="password_confirm">CONFIRM PASSWORD</label>
+                <input id="password_confirm" name="password_confirm" type="password" autocomplete="new-password" required minlength="8">
+
+                <button class="button button--filled" type="submit">CREATE ACCOUNT</button>
+            </form>
+
+            <p class="auth-switch">Already have an account? <a href="{{ path('app_login') }}">Login</a></p>
+            <a class="auth-back" href="{{ path('app_home') }}">← Back to homepage</a>
+        </section>
+    </main>
+</body>
+</html>

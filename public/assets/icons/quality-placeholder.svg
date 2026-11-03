@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.47 44.82">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #bfbfbf;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <g id="section_3" data-name="section 3">
+    <g>
+      <rect class="cls-1" x="-2.78" y="27.79" width="23.16" height="7.74" transform="translate(-23.89 28.3) rotate(-68.61)"/>
+      <rect class="cls-1" x="12.7" y="26.46" width="23.16" height="7.74" transform="translate(6.3 64.77) rotate(-113.76)"/>
+      <g id="medal">
+        <polygon class="cls-1" points="16.62 2.51 20.69 .92 23.04 4.6 27.26 5.7 27.01 10.06 29.78 13.43 27.01 16.81 27.26 21.17 23.04 22.27 20.69 25.94 16.62 24.35 12.56 25.94 10.2 22.27 5.98 21.17 6.24 16.81 3.47 13.43 6.24 10.06 5.98 5.7 10.2 4.6 12.56 .92 16.62 2.51"/>
+        <circle class="cls-1" cx="16.62" cy="13.43" r="8.85"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin | Gonzaga's Apparel{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="admin-page">
+    <div class="admin-layout">
+
+        {# ── Sidebar ─────────────────────────────────────── #}
+        {{ include('admin/_sidebar.html.twig') }}
+
+        {# ── Mobile overlay (closes sidebar on tap outside) ── #}
+        <div class="admin-sidebar-overlay" id="sidebarOverlay"></div>
+
+        {# ── Main content column ──────────────────────────── #}
+        <div class="admin-main-wrapper">
+
+            {# ── Top Bar ── #}
+            {{ include('admin/_topbar.html.twig') }}
+
+            {# ── Flash messages ── #}
+            <div class="admin-flash-container">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="site-flash {{ label }}" role="status">{{ message }}</div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+
+            {# ── Page content ── #}
+            {% block body %}{% endblock %}
+
+            {# ── Footer ── #}
+            {{ include('admin/_footer.html.twig') }}
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('adminSidebar');
+            const toggle  = document.getElementById('sidebarToggle');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            if (toggle && sidebar && overlay) {
+                const toggleSidebar = () => {
+                    sidebar.classList.toggle('is-open');
+                    overlay.classList.toggle('is-visible');
+                };
+                toggle.addEventListener('click', toggleSidebar);
+                overlay.addEventListener('click', toggleSidebar);
+            }
+        });
+    </script>
+    {% block javascripts %}{% endblock %}
+</body>
+</html>
